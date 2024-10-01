@@ -1,0 +1,56 @@
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+target/
+out/
+build/
+.gradle/
+.mvn/
+**/nbproject/private/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+spring-configuration-metadata.json
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+
+# STS (Spring Tool Suite) 및 Eclipse 관련 파일 무시
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# VS Code 설정
+.vscode/
+
+# 예외 처리 - gradle wrapper 파일은 포함시킴
+!gradle/wrapper/gradle-wrapper.jar
+
+# 각 프로젝트(src 디렉토리 포함) 내부에 있는 특정 디렉토리 무시
+**/src/main/**/build/
+**/src/test/**/build/
+**/src/main/**/bin/
+**/src/test/**/bin/
+**/src/main/**/out/
+**/src/test/**/out/
+
+# 각 프로젝트의 예외 처리 - 특정 src 디렉토리의 하위 폴더 포함
+!project*/src/main/**/build/
+!project*/src/test/**/build/
+!project*/src/main/**/bin/
+!project*/src/test/**/bin/
+!project*/src/main/**/out/
+!project*/src/test/**/out/
