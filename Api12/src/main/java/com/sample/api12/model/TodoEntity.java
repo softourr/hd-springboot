@@ -2,16 +2,14 @@ package com.sample.api12.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.extern.log4j.Log4j2;
-
 import java.time.LocalDate;
 @Getter
-@Builder
+@Builder // 빌더패턴이뭔데
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity // 데이터베이스의 테이블에 매핑
 @ToString
-@Table(name="tbl_todo")
+@Table(name="tbl_todo") // 매핑될 테이블
 public class TodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

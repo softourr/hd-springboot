@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TodoRepository
         extends JpaRepository<TodoEntity, Long> {
+    // 인자로 엔티티와 그 기본키타입 지정
 }

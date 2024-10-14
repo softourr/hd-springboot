@@ -9,7 +9,7 @@ public interface TodoService {
     public void modify(TodoDto dto);
     public void remove(Long tno);
 
-
+    // 디폴트는 오버라이드를 하지 않으면 디폴트가 사용됨
     default TodoDto entityToDto(TodoEntity todo){
         TodoDto todoDto = TodoDto.builder()
                 .tno(todo.getTno())
