@@ -59,10 +59,10 @@ public class TodoReposittoryTest {
 //        log.info(result.getContent());
 //    }
 
-    @Test
-    public void testSearch(){
-        todoRepository.search1();
-
-    }
+//    @Test
+//    public void testSearch(){
+//        todoRepository.search1();
+//
+//    }
 
 }

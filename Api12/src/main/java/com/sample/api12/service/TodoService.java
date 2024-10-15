@@ -1,5 +1,7 @@
 package com.sample.api12.service;
 
+import com.sample.api12.dto.PageRequestDto;
+import com.sample.api12.dto.PageResponseDto;
 import com.sample.api12.dto.TodoDto;
 import com.sample.api12.model.TodoEntity;
 
@@ -9,6 +11,8 @@ public interface TodoService {
     public void modify(TodoDto dto);
     public void remove(Long tno);
 
+    public PageResponseDto<TodoDto> getList(PageRequestDto pageRequestDto);
+    
     // 디폴트는 오버라이드를 하지 않으면 디폴트가 사용됨
     default TodoDto entityToDto(TodoEntity todo){
         TodoDto todoDto = TodoDto.builder()
