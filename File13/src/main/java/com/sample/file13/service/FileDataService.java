@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 @Log4j2
 @Service
@@ -33,5 +34,14 @@ public class FileDataService {
             return "file upload success" + filePath;
         }
         return null;
+    }
+
+    public byte[] downloadImageFileSystem(Long id) throws IOException {
+        FileEntity fileData = fileDataRepository.findById(id).orElseThrow();
+        String filePath = fileData.getFilePath();
+
+        log.info("download file : " + filePath);
+
+        return Files.readAllBytes(new File(filePath).toPath());
     }
 }
