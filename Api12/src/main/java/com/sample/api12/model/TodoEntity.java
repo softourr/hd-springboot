@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @Table(name="tbl_todo") // 매핑될 테이블
 public class TodoEntity {
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tno;
     private String title;
