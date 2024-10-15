@@ -1,21 +1,12 @@
 package com.sample.api12.repository;
 
-import com.sample.api12.model.TodoEntity;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 @SpringBootTest
 @Log4j2
-public class TodoReposittoryTest {
+public class TodoRepositoryTest {
     @Autowired
     private TodoRepository todoRepository;
 

@@ -46,25 +46,23 @@ public class TodoServiceImpl implements TodoService{
 
     @Override
     public void remove(Long tno) {
-
+        todoRepository.deleteById(tno);
     }
 
     @Override
     public PageResponseDto<TodoDto> getList(PageRequestDto pageRequestDto) {
         Page<TodoEntity> result = todoRepository.search1(pageRequestDto);
 
-        List<TodoDto> doList
+        List<TodoDto> dtoList
                 = result.get().map(todo -> entityToDto(todo)).collect(Collectors.toList());
 
         PageResponseDto<TodoDto> responseDto = PageResponseDto.<TodoDto>withAll()
-                .doList(doList)
+                .dtoList(dtoList)
                 .pageRequestDto(pageRequestDto)
                 .total(result.getTotalElements())
                 .build();
 
-
-
-        return null;
+        return responseDto;
     }
 
 

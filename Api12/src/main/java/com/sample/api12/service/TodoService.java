@@ -12,13 +12,13 @@ public interface TodoService {
     public void remove(Long tno);
 
     public PageResponseDto<TodoDto> getList(PageRequestDto pageRequestDto);
-    
+
     // 디폴트는 오버라이드를 하지 않으면 디폴트가 사용됨
     default TodoDto entityToDto(TodoEntity todo){
         TodoDto todoDto = TodoDto.builder()
                 .tno(todo.getTno())
                 .title(todo.getTitle())
-                .write(todo.getWriter())
+                .writer(todo.getWriter())
                 .complete(todo.isComplete())
                 .dueDate(todo.getDueDate())
                 .build();
@@ -28,7 +28,7 @@ public interface TodoService {
         TodoEntity todoEntity = TodoEntity.builder()
                 .tno(todoDto.getTno())
                 .title(todoDto.getTitle())
-                .writer(todoDto.getWrite())
+                .writer(todoDto.getWriter())
                 .complete(todoDto.isComplete())
                 .dueDate(todoDto.getDueDate())
                 .build();
