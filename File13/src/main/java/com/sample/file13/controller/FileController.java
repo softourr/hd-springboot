@@ -1,5 +1,6 @@
 package com.sample.file13.controller;
 
+import com.sample.file13.domain.FileEntity;
 import com.sample.file13.service.FileDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class FileController {
     @Autowired
@@ -46,6 +48,19 @@ public class FileController {
                     .body(downloadImage);
         }else{ // 파일없으면
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/fileList")
+    public ResponseEntity<List<FileEntity>> getFileDataList() {
+
+        List<FileEntity> fileDataList = fileDataService.findAll();
+
+        if(!fileDataList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(fileDataList);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
 }

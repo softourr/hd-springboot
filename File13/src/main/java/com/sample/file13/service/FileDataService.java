@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 @Log4j2
 @Service
@@ -43,5 +44,9 @@ public class FileDataService {
         log.info("download file : " + filePath);
 
         return Files.readAllBytes(new File(filePath).toPath());
+    }
+
+    public List<FileEntity> findAll() {
+        return fileDataRepository.findAll(); //띠용
     }
 }
