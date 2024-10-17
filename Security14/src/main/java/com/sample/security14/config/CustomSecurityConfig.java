@@ -34,10 +34,12 @@ public class CustomSecurityConfig {
 
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
-//            config.successHandler(null);
+//            config.successHandler(null); // 토큰 발행
+            // 액세스, 리프레시 토큰
 //            config.failureUrl(null);
         });
 
+        // http.addFilterBefore(new JWTcheckFilter(),null); // jwt검증, 토큰유효성검사?
         return http.build();
     }
     @Bean
