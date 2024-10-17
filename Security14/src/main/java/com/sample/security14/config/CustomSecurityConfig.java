@@ -1,5 +1,6 @@
 package com.sample.security14.config;
 
+import com.sample.security14.handler.CustomAccessDeniedHandler;
 import com.sample.security14.security.APILoginFailHandler;
 import com.sample.security14.security.APILoginSuccessHandler;
 import com.sample.security14.security.filter.JWTCheckFilter;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +24,7 @@ import java.util.Arrays;
 @Configuration // Spring의 설정 클래스,클레스에서 Bean을 정의할 수 있습니다.
 @Log4j2 // 로깅 프레임워크로 로그를 기록
 @RequiredArgsConstructor // final 필드 또는 @NonNull 필드에 대한 생성자 생성
+@EnableMethodSecurity
 public class CustomSecurityConfig {
 
     @Bean
@@ -44,6 +47,11 @@ public class CustomSecurityConfig {
         });
 
          http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class); // jwt검증, 토큰유효성검사?
+
+        http.exceptionHandling(config -> {
+            config.accessDeniedHandler(new CustomAccessDeniedHandler());
+        });
+
         return http.build();
     }
     @Bean

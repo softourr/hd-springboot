@@ -66,7 +66,7 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
             filterChain.doFilter(request, response);
-        }catch(Exception e){
+        } catch(Exception e){
 
             log.info("JWT check error -------------------------");
             Gson gson = new Gson();
