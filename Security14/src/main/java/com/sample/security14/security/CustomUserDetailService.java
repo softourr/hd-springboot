@@ -41,6 +41,6 @@ public class CustomUserDetailService implements UserDetailsService {
         log.info(memberDto);
 
 
-        return null;
+        return memberDto;
     }
 }

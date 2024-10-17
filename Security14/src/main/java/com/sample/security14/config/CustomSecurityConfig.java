@@ -1,5 +1,8 @@
 package com.sample.security14.config;
 
+import com.sample.security14.security.APILoginFailHandler;
+import com.sample.security14.security.APILoginSuccessHandler;
+import com.sample.security14.security.filter.JWTCheckFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -34,12 +38,12 @@ public class CustomSecurityConfig {
 
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
-//            config.successHandler(null); // 토큰 발행
+            config.successHandler(new APILoginSuccessHandler()); // 토큰 발행
             // 액세스, 리프레시 토큰
-//            config.failureUrl(null);
+            config.failureHandler(new APILoginFailHandler());
         });
 
-        // http.addFilterBefore(new JWTcheckFilter(),null); // jwt검증, 토큰유효성검사?
+         http.addFilterBefore(new JWTCheckFilter(), UsernamePasswordAuthenticationFilter.class); // jwt검증, 토큰유효성검사?
         return http.build();
     }
     @Bean
